@@ -1,0 +1,7 @@
+{
+  "name": "moden-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
