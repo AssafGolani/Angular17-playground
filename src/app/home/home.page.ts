@@ -2,9 +2,10 @@ import { Component, inject } from '@angular/core';
 import { MovieService } from '../services/movie.service';
 import { catchError, finalize } from 'rxjs';
 import { MovieResult } from '../services/interfaces';
-import { IonHeader, IonLabel , IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAlert, IonList, IonAvatar, IonItem, IonSkeletonText, IonBadge } from '@ionic/angular/standalone';
+import { IonHeader, IonLabel , IonToolbar, IonTitle, IonContent, IonInfiniteScroll,InfiniteScrollCustomEvent, IonAlert, IonList, IonAvatar, IonItem, IonSkeletonText, IonBadge, IonInfiniteScrollContent } from '@ionic/angular/standalone';
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
 
 
 @Component({
@@ -13,7 +14,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonAvatar, IonSkeletonText
-    ,IonAlert, IonLabel, DatePipe, RouterModule, IonBadge],
+    ,IonAlert, IonLabel, DatePipe, RouterModule, IonBadge, IonInfiniteScroll, IonInfiniteScrollContent],
   })
 export class HomePage {
 
@@ -63,7 +64,7 @@ export class HomePage {
 
   }
     loadMore(event?: InfiniteScrollCustomEvent){
-
-    
+      this.currentPage++;
+      this.loadMovies(event);
   }
 }
