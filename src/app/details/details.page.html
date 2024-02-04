@@ -1,13 +1,35 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/">
+      </ion-back-button>
+    </ion-buttons>
     <ion-title>details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  @if(movie(); as movie){
+    <ion-card>
+      <div [style.height.px]="300" 
+      [style.background-image]="'url(' + imageBaseUrl + '/w400' + movie.poster_path + ')'">
+    </div>
+      <ion-card-header>
+        <ion-card-title>{{ movie?.title }}</ion-card-title>
+        <ion-card-subtitle>{{ movie.tagline }}</ion-card-subtitle>
+        <ion-text color="tertiary">
+          @for (g of movie.genres; track g.id; let isLast = $last;){
+            <span>{{g.name}} {{ !isLast ? '.': ''}}</span>
+          }
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-label color="medium">{{ movie.overview}}</ion-label>
+      </ion-card-content>
+      <ion-item lines="none">
+        <ion-icon name="cash-outline" slot="start"></ion-icon>
+        <ion-label>{{ movie.budget | currency: 'USD': true: '1.0-0' }}</ion-label>
+      </ion-item>
+    </ion-card>
+  }
 </ion-content>
