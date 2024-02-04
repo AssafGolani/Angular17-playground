@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, delay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiResult, MovieResult } from './interfaces';
 
@@ -17,7 +17,9 @@ export class MovieService {
   constructor() { }
 
   getTopRatedMovies(page = 1): Observable<ApiResult> {
-    return this.http.get<ApiResult>(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`);
+    return this.http.get<ApiResult>(`${BASE_URL}/movie/top_rated?page=${page}&api_key=${API_KEY}`)
+    .pipe(
+    );
   }
 
   getMovieDetails(id: string) : Observable<MovieResult>{
