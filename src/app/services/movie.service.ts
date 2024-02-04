@@ -19,6 +19,7 @@ export class MovieService {
   getTopRatedMovies(page = 1): Observable<ApiResult> {
     return this.http.get<ApiResult>(`${BASE_URL}/movie/top_rated?page=${page}&api_key=${API_KEY}`)
     .pipe(
+      delay(5000)
     );
   }
 
